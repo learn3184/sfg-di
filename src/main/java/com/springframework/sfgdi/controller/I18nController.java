@@ -2,19 +2,22 @@ package com.springframework.sfgdi.controller;
 
 import com.springframework.sfgdi.services.GreetingService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ConstructorInjectedController {
+public class I18nController {
 
-    private GreetingService greetingService;
+    private final GreetingService greetingService;
 
-    public ConstructorInjectedController(@Qualifier("constructorGreetingServiceImpl") GreetingService greetingService) {
+    public I18nController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
-    public String sayHello()
+    public String sayGreetings()
     {
-        return this.greetingService.getGreetings();
+        return greetingService.getGreetings();
+
     }
+
 }
